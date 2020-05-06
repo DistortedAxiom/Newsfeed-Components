@@ -37,9 +37,9 @@ const data = [
         mewing kittens Remus Lupin. Palominos scarlet train black robes, Metamorphimagus Niffler dead easy second bedroom. Padma
         and Parvati Sorting Hat Minister of Magic blue turban remember my last.`,
 
-    thirdParagraph: `Toad-like smile Flourish and Blotts he knew I’d come back Quidditch World Cup. Fat Lady baubles banana fritters fairy lights 
-        Petrificus Totalus. So thirsty, deluminator firs’ years follow me 12 inches of parchment. Head Boy start-of-term banquet Cleansweep Seven 
-        roaring lion hat. Unicorn blood crossbow mars is bright tonight, feast Norwegian Ridgeback. Come seek us where our voices sound, we cannot 
+    thirdParagraph: `Toad-like smile Flourish and Blotts he knew I’d come back Quidditch World Cup. Fat Lady baubles banana fritters fairy lights
+        Petrificus Totalus. So thirsty, deluminator firs’ years follow me 12 inches of parchment. Head Boy start-of-term banquet Cleansweep Seven
+        roaring lion hat. Unicorn blood crossbow mars is bright tonight, feast Norwegian Ridgeback. Come seek us where our voices sound, we cannot
         sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
   },
   {
@@ -66,8 +66,8 @@ const data = [
         consectetur adipiscing elit. Nidoran Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nidorino Lorem ipsum dolor
         sit amet, consectetur adipiscing elit. Nidoking Lorem ipsum`,
 
-    thirdParagraph: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel 
-        Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James 
+    thirdParagraph: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel
+        Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
   {
@@ -85,11 +85,23 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Uber is laying off 3,700 as rides plummet due to COVID-19',
+    date: 'May 6th 2020',
+    firstParagraph: `In an SEC filing dating back to last week, Uber disclosed plans to layoff 3,700 employees. The figure amounts to around 14% percent of the ride hailing giant's total workforce.
+    In the document, the company states that the job loss is part of a planned reduction in operating expenses "in response to the economic challenges and uncertainty resulting from the COVID-19 pandemic and its impact on the company's business."
+    While Uber hasn't suspended operations altogether, the company has no doubt taken a massive hit to its bottom line as state governments have issued stay at home orders for non-essential workers.`,
+    secondParagraph: `In a letter to staff, CEO Dara Khosrowshahi noted that the cuts will come from from community operations and recruiting. Uber will also be closing around 40 percent of its Greenlight locations - used for in-person driver assistance.
+    "With the reality of our rides trips volumes being down significantly, our need for CommOps as well as in-person support is down substantially," he writes. "And with our hiring freeze, there simply isn't enough work for recruiters."
+    Khosrowshahi has also agreed to waive his own base salary for the rest of 2020. `,
+    thirdParagraph: `In connection with the foregoing, Dara Khosrowshahi, the Company’s Chief Executive Officer, after consultation with the Board of Directors, agreed to waive his base salary for the remainder of the year ending December 31, 2020. The company writes in the filing. "In connection with this decision, Mr. Khosrowshahi and the Company entered into a letter agreement, effective as of May 2, 2020."
+    The executive made around $1 million in 2019.`,
   }
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
+/* Step 1: Create a function that creates a component. You will want your component to look like the template below:
+
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
@@ -112,3 +124,48 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+let articles = document.querySelector('.articles');
+
+function componentCreator(obj) {
+    const list = obj.forEach((el) => {
+      const div = document.createElement('div');
+      div.classList.add('article');
+
+      const title = document.createElement('h2');
+      title.textContent = el.title;
+
+      const date = document.createElement('p');
+      date.textContent = el.date;
+      date.classList.add('date');
+
+      const p1 = document.createElement('p');
+      p1.textContent = el.firstParagraph;
+
+      const p2 = document.createElement('p');
+      p2.textContent = el.secondParagraph;
+
+      const p3 = document.createElement('p');
+      p3.textContent = el.thirdParagraph;
+
+      const expand = document.createElement('span');
+      expand.textContent = "EXPAND";
+      expand.classList.add('expandButton');
+      expand.addEventListener("click", () => {
+        div.classList.toggle('article-open');
+      })
+
+      articles.appendChild(div);
+      div.appendChild(title);
+      div.appendChild(date);
+      div.appendChild(p1);
+      div.appendChild(p2);
+      div.appendChild(p3);
+      div.appendChild(expand);
+    })
+
+    return list;
+}
+
+
+componentCreator(data);
